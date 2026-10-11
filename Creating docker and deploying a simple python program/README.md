@@ -6,11 +6,6 @@ This project features a multi-stage GitLab CI/CD pipeline that automates contain
 
 The pipeline consists of three sequential stages:
 
-```mermaid
-graph TD
-    A[.pre: docker_stage] -->|Builds & Pushes Docker Image| B[build: python_stage]
-    B -->|Generates output.txt via add.py| C[deploy: aws_stage]
-    C -->|Uploads output to S3| D((AWS S3 Bucket))
 📋 Pipeline Stages Breakdown
 1. docker_stage (.pre)
 Purpose: Builds a custom Docker image and pushes it to the GitLab Container Registry.
