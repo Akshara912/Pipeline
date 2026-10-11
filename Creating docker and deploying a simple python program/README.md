@@ -12,7 +12,7 @@ Purpose: Builds a custom Docker image and pushes it to the GitLab Container Regi
 
 Environment: Uses Docker-in-Docker (docker:dind).
 
-Actions:
+## Actions:
 
 Logs into the GitLab Container Registry using CI variables ($CI_REGISTRY_USER, $CI_REGISTRY_PASSWORD).
 
@@ -25,7 +25,7 @@ Purpose: Runs a Python script inside the newly built and published custom contai
 
 Environment: Uses registry.gitlab.com/akshara912/aws_project/dockerfile.
 
-Actions:
+## Actions:
 
 Creates a local python/ directory.
 
@@ -38,16 +38,18 @@ Purpose: Deploys the generated output file to an Amazon S3 bucket.
 
 Environment: Uses the official amazon/aws-cli image.
 
-Actions:
+## Actions:
 
 Verifies the AWS CLI version.
 
 Copies python/output.txt to the target S3 bucket specified by $AWS_S3_BUCKET.
 
-⚙️ Required CI/CD Variables
+## ⚙️ Required CI/CD Variables
+
 To make this pipeline run successfully, configure the following variables under your GitLab project settings (Settings > CI/CD > Variables):
 
-Variable Name	Description	Type
+## Variable Name	Description	Type
+
 AWS_ACCESS_KEY_ID	Your AWS IAM access key with permissions to write to the S3 bucket.	Variable
 AWS_SECRET_ACCESS_KEY	Your AWS IAM secret access key.	Variable (Masked)
 AWS_DEFAULT_REGION	The AWS region where your S3 bucket resides (e.g., us-east-1).	Variable
