@@ -7,12 +7,12 @@ This project features a multi-stage GitLab CI/CD pipeline that automates contain
 The pipeline consists of three sequential stages:
 
 📋 Pipeline Stages Breakdown
-1. docker_stage (.pre)
+## 1. docker_stage (.pre)
 Purpose: Builds a custom Docker image and pushes it to the GitLab Container Registry.
 
 Environment: Uses Docker-in-Docker (docker:dind).
 
-## Actions:
+Actions:
 
 Logs into the GitLab Container Registry using CI variables ($CI_REGISTRY_USER, $CI_REGISTRY_PASSWORD).
 
@@ -20,12 +20,12 @@ Builds the Docker image from the local dockerfile.
 
 Pushes the image to $CI_REGISTRY_IMAGE/dockerfile.
 
-2. python_stage (build)
+## 2. python_stage (build)
 Purpose: Runs a Python script inside the newly built and published custom container environment.
 
 Environment: Uses registry.gitlab.com/akshara912/aws_project/dockerfile.
 
-## Actions:
+Actions:
 
 Creates a local python/ directory.
 
@@ -33,12 +33,12 @@ Executes add.py and pipes the output into python/output.txt.
 
 Artifacts: Saves python/output.txt so it can be passed along to subsequent deployment stages.
 
-3. aws_stage (deploy)
+## 3. aws_stage (deploy)
 Purpose: Deploys the generated output file to an Amazon S3 bucket.
 
 Environment: Uses the official amazon/aws-cli image.
 
-## Actions:
+Actions:
 
 Verifies the AWS CLI version.
 
