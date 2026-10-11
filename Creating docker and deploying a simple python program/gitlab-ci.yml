@@ -1,0 +1,30 @@
+docker_stage:
+  stage: .pre
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE/dockerfile .
+    - docker push $CI_REGISTRY_IMAGE/dockerfile
+
+python_stage:
+  stage: build
+  image: registry.gitlab.com/akshara912/aws_project/dockerfile
+  script:
+    - mkdir python
+    - python add.py > python/output.txt
+  artifacts:
+    paths:
+      - python/output.txt
+  
+
+aws_stage:
+  stage: deploy
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  script:
+    - aws --version
+    - aws s3 cp python/output.txt s3://$AWS_S3_BUCKET
+
