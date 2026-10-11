@@ -50,8 +50,12 @@ To make this pipeline run successfully, configure the following variables under 
 
 ## Variable Name	Description	Type
 
-AWS_ACCESS_KEY_ID	Your AWS IAM access key with permissions to write to the S3 bucket.	Variable
-AWS_SECRET_ACCESS_KEY	Your AWS IAM secret access key.	Variable (Masked)
-AWS_DEFAULT_REGION	The AWS region where your S3 bucket resides (e.g., us-east-1).	Variable
-AWS_S3_BUCKET	The name of your target S3 bucket (e.g., my-project-output-bucket).	Variable
+AWS_ACCESS_KEY_ID	Your AWS IAM access key with permissions to write to the S3 bucket.	
+
+AWS_SECRET_ACCESS_KEY	Your AWS IAM secret access key.
+
+AWS_DEFAULT_REGION	The AWS region where your S3 bucket resides (e.g., us-east-1).	
+
+AWS_S3_BUCKET	The name of your target S3 bucket (e.g., my-project-output-bucket).	
+
 (Note: GitLab automatically provides $CI_REGISTRY, $CI_REGISTRY_USER, $CI_REGISTRY_PASSWORD, and $CI_REGISTRY_IMAGE for the container registry stage.)
