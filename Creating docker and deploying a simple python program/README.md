@@ -1,10 +1,12 @@
-AWS Project - CI/CD Pipeline
+# AWS Project - CI/CD Pipeline
+
 This project features a multi-stage GitLab CI/CD pipeline that automates container building, execution of a Python script using a custom container environment, and deployment of the resulting output to an AWS S3 bucket.
 
-🚀 Pipeline Architecture
+## 🚀 Pipeline Architecture
+
 The pipeline consists of three sequential stages:
 
-Code snippet
+```mermaid
 graph TD
     A[.pre: docker_stage] -->|Builds & Pushes Docker Image| B[build: python_stage]
     B -->|Generates output.txt via add.py| C[deploy: aws_stage]
@@ -26,7 +28,7 @@ Pushes the image to $CI_REGISTRY_IMAGE/dockerfile.
 2. python_stage (build)
 Purpose: Runs a Python script inside the newly built and published custom container environment.
 
-Environment: Uses [registry.gitlab.com/akshara912/aws_project/dockerfile](https://registry.gitlab.com/akshara912/aws_project/dockerfile).
+Environment: Uses registry.gitlab.com/akshara912/aws_project/dockerfile.
 
 Actions:
 
@@ -56,10 +58,3 @@ AWS_SECRET_ACCESS_KEY	Your AWS IAM secret access key.	Variable (Masked)
 AWS_DEFAULT_REGION	The AWS region where your S3 bucket resides (e.g., us-east-1).	Variable
 AWS_S3_BUCKET	The name of your target S3 bucket (e.g., my-project-output-bucket).	Variable
 (Note: GitLab automatically provides $CI_REGISTRY, $CI_REGISTRY_USER, $CI_REGISTRY_PASSWORD, and $CI_REGISTRY_IMAGE for the container registry stage.)
-
-🛠️ Project Structure
-Plaintext
-├── .gitlab-ci.yml    # CI/CD pipeline configuration
-├── dockerfile        # Custom Dockerfile for the Python environment
-├── add.py            # Python script executed during the build stage
-└── README.md         # Project documentation
