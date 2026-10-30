@@ -1,0 +1,4 @@
+FROM alpine:latest
+WORKDIR /app
+COPY build/status.txt /app/app.txt
+CMD ["cat", "/app/app.txt"]
